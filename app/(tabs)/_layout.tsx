@@ -1,35 +1,41 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+import { Tabs, useSegments } from "expo-router";
+import { colors } from "../styles/rootStyle";
+import Ionicons from "@expo/vector-icons/Ionicons";
+export default function TabsLayout() {
+  const segments = useSegments();
+  console.log("segments ", segments);
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: colors.primary,
+        headerShadowVisible: false,
+        tabBarStyle: {
+          direction: "rtl",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "בית",
+          tabBarIcon: ({ color, focused }) => <Ionicons name={focused ? "home-sharp" : "home-outline"} color={color} size={24}></Ionicons>,
         }}
-      />
+      ></Tabs.Screen>
       <Tabs.Screen
-        name="explore"
+        name="cart"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "עגלה",
+          tabBarIcon: ({ color, focused }) => <Ionicons name={focused ? "cart-sharp" : "cart-outline"} color={color} size={24}></Ionicons>,
         }}
-      />
+      ></Tabs.Screen>
+      <Tabs.Screen
+        name="menu"
+        options={{
+          title: "תפריט",
+          headerShown: false,
+          tabBarIcon: ({ focused, color }) => <Ionicons name={focused ? "menu-sharp" : "menu-outline"} color={color} size={24}></Ionicons>,
+        }}
+      ></Tabs.Screen>
     </Tabs>
   );
 }
