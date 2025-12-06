@@ -1,4 +1,4 @@
-import createOrder from "@/api/orderAPI";
+import { createOrder } from "@/api/orderAPI";
 import { useCartStore } from "@/app/store";
 import CartListCard from "@/components/cart/cartListCard";
 import CartSummaryCard from "@/components/cart/cartSummaryCard";

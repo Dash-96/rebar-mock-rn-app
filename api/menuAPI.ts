@@ -1,6 +1,5 @@
-import { useTokenStore } from "@/app/store";
 import { API_BASE_URL } from "@/config/constants";
-import { Product } from "@/models/productModel";
+import { retrieveToken } from "@/utils/authUtils";
 
 export const fetchProducts = async (token: string) => {
   const response = await fetch(API_BASE_URL + "/product", {
@@ -21,6 +20,17 @@ export const fetchIngredients = async (token: string) => {
   }
   return response.json();
 };
+
+export async function getPopularProducts() {
+  let token = await retrieveToken();
+  let response = await fetch(API_BASE_URL + "/product/popular", {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  let data = await response.json();
+  console.log("popular is: ", data);
+  return data;
+}
 
 // export const menuAPI = async (url: string, options: RequestInit = {}) => {
 //   const token = useTokenStore((state) => state.token);
