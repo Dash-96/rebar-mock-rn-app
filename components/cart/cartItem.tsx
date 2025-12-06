@@ -1,9 +1,8 @@
-import { PropsWithChildren } from "react";
-import { View, Text, Image, Pressable, StyleSheet } from "react-native";
-import { ProductClientState } from "@/models/productModel";
-import { IMAGE_BASE_URL } from "@/config/constants";
-import { flattenUpgrades, getSizeSymbol } from "@/utils/cartUtils";
 import { colors } from "@/app/styles/rootStyle";
+import { IMAGE_BASE_URL } from "@/config/constants";
+import { ProductClientState } from "@/models/productModel";
+import { flattenUpgrades, getSizeSymbol } from "@/utils/cartUtils";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface Props {
   productState: ProductClientState;
@@ -34,8 +33,12 @@ export default function CartItem({ productState }: Props) {
           </View>
         )}
         {productState.base && (
-          <View>
+          <View style={[styles.rowWraper, styles.fullRow]}>
             <Text style={[styles.extras, styles.dimText]}>{productState.base}</Text>
+            <Text style={[styles.price, styles.priceSecondary, styles.dimText]}>
+              {"\u20AA"}
+              {productState.basePrice}
+            </Text>
           </View>
         )}
         {flattenUpgrades(productState.upgrades).map((upgrade, index) => {

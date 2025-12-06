@@ -16,6 +16,7 @@ export interface ProductClientState extends Product {
   upgrades: Upgrade[];
   base: string;
   basePrice: number;
+  totalPrice: number;
 }
 
 //.==========================

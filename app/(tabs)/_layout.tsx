@@ -1,9 +1,8 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs, useSegments } from "expo-router";
 import { colors } from "../styles/rootStyle";
-import Ionicons from "@expo/vector-icons/Ionicons";
 export default function TabsLayout() {
   const segments = useSegments();
-  console.log("segments ", segments);
   return (
     <Tabs
       screenOptions={{

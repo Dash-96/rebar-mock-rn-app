@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
-import BasePickerItem from "./basePickerItem";
-import { useProductContext } from "./prodcutContext";
-import { useState, useEffect, useRef } from "react";
-import { getBaseType } from "@/utils/productUtils";
 import { useProductsStore } from "@/app/store";
+import { getBaseType } from "@/utils/productUtils";
+import { useEffect, useRef, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import BasePickerItem from "./basePickerItem";
 
 interface Props {
   ingredients: string;

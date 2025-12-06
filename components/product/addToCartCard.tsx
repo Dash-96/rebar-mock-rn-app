@@ -1,12 +1,16 @@
-import { View, Button, StyleSheet, Pressable, Text, ToastAndroid } from "react-native";
-import { useEffect, useState, useLayoutEffect } from "react";
-import { Link, router } from "expo-router";
-import { colors } from "@/app/styles/rootStyle";
 import { useCartStore, useProductsStore } from "@/app/store";
-import { Upgrade } from "@/models/productModel";
+import { colors } from "@/app/styles/rootStyle";
+import { router } from "expo-router";
+import { useEffect } from "react";
+import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 export default function AddToCartCard() {
   const productState = useProductsStore((state) => state.product);
+  const setProductState = useProductsStore((state) => state.setProduct);
   const setCart = useCartStore((state) => state.addCartItem);
+
+  useEffect(() => {
+    setProductState({ totalPrice: getPrice() });
+  }, [productState.price, productState.basePrice, productState.upgrades]);
 
   function printProduct(name: string, item: any) {
     console.log(`===${name}===`);

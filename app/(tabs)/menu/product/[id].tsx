@@ -1,23 +1,21 @@
-import SizePickerCard from "@/components/product/sizePickerCard";
-import { IMAGE_BASE_URL } from "@/config/constants";
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
-import { ProductContext } from "@/components/product/prodcutContext";
-import { useProduct } from "@/utils/productUtils";
+import { colors } from "@/app/styles/rootStyle";
+import AddToCartCard from "@/components/product/addToCartCard";
 import BasePickerCard from "@/components/product/basePickerCard";
 import CustomChangesCard from "@/components/product/customChangesCard";
+import SizePickerCard from "@/components/product/sizePickerCard";
 import UpgradesCard from "@/components/product/upgradesCard";
-import AddToCartCard from "@/components/product/addToCartCard";
-import { colors } from "@/app/styles/rootStyle";
+import { IMAGE_BASE_URL } from "@/config/constants";
+import { useProduct } from "@/utils/productUtils";
 import { useNavigation } from "expo-router";
 import { useEffect } from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function ProductScreen() {
   const navigation = useNavigation();
   useEffect(() => {
     navigation.getParent()?.setOptions({ tabBarStyle: { display: "none" } });
-
     return () => {
-      navigation.getParent()?.setOptions({ tabBarStyle: "flex" });
+      navigation.getParent()?.setOptions({ tabBarStyle: { display: "flex", direction: "rtl" } });
     };
   }, [navigation]);
   let { product, productState } = useProduct();

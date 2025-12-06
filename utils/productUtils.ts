@@ -1,7 +1,7 @@
 import { useProductsStore } from "@/app/store";
-import UpgradeItem, { UpgradeData } from "@/components/product/upgradeItem";
+import { UpgradeData } from "@/components/product/upgradeItem";
 // import { ingredient, Upgrade } from "@/models/ingredientModel";
-import { Product, ProductClientState, Ingredient, Upgrade } from "@/models/productModel";
+import { Ingredient, Product, ProductClientState, Upgrade } from "@/models/productModel";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
@@ -42,6 +42,7 @@ export function useProduct() {
       upgrades: [],
       base: "",
       basePrice: 0,
+      totalPrice: 0,
     };
     setProductClientState(currentProductState);
   }, []);

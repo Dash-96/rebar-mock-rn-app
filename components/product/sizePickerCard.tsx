@@ -1,8 +1,7 @@
-import { StyleSheet, View, Text, Pressable } from "react-native";
-import { useState } from "react";
-import SizePickerItem from "./sizePickerItem";
-import { useProductContext } from "./prodcutContext";
 import { useProductsStore } from "@/app/store";
+import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import SizePickerItem from "./sizePickerItem";
 
 interface Props {
   price: number;
@@ -25,16 +24,11 @@ export default function SizePickerCard({ price }: Props) {
 
   function pickSize(size: string) {
     setFocus({ ...defaultFocus, [size]: true });
-    //product.size = size as "small" | "medium" | "large";
-
     let price = size === "small" ? smallPrice.toString() : size === "medium" ? mediumPrice.toString() : largePrice.toString();
-
-    // console.log(`size picker === product actual excpected price: ${price}`);
     setProdcutClientState({
       size: size as "small" | "medium" | "large",
       price: price,
     });
-    // console.log(`size picker === product currently holds : ${productState.price}`);
   }
   return (
     <View style={styles.cardContainer}>
